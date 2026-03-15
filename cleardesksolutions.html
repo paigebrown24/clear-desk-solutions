@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Clear Desk Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #5B6B4F;
+      --green-dark:  #4A5840;
+      --green-light: #EBF0E6;
+      --gold:        #BB9B6E;
+      --gold-dark:   #A0845A;
+      --gold-light:  #F5EDE0;
+      --cream:       #F7F4EF;
+      --white:       #FFFFFF;
+      --charcoal:    #2C2C2C;
+      --text-mid:    #4A4A4A;
+      --grey-mid:    #D8D4CE;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 72px;
+      background: rgba(247,244,239,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--grey-mid);
+    }
+
+    .logo-area { display: flex; align-items: center; gap: 14px; }
+    .logo-area img { height: 44px; width: auto; }
+    .brand-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--green); letter-spacing: -0.01em; }
+    .brand-name span { color: var(--gold-dark); }
+    .nav-tagline { font-size: 0.65rem; color: #888; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 1px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.9rem; font-weight: 500; color: var(--text-mid); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-active { color: var(--green) !important; font-weight: 600 !important; position: relative; }
+    .nav-active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--gold); border-radius: 2px; }
+    .nav-cta { background: var(--gold) !important; color: var(--green-dark) !important; font-weight: 600 !important; padding: 9px 20px; border-radius: 8px; transition: background 0.2s, transform 0.15s !important; }
+    .nav-cta:hover { background: var(--gold-dark) !important; transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--green); border-radius: 2px; }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      padding: 140px 5% 100px;
+      background: var(--cream);
+      position: relative; overflow: hidden;
+    }
+
+    /* Organic texture pattern */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(91,107,79,0.06) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(187,155,110,0.08) 0%, transparent 40%),
+        radial-gradient(circle at 60% 80%, rgba(91,107,79,0.05) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-bottom: 28px;
+    }
+    .eyebrow-line { width: 40px; height: 2px; background: var(--gold); border-radius: 2px; }
+    .eyebrow-text { font-size: 0.78rem; font-weight: 700; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.1em; }
+
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 900; color: var(--green);
+      line-height: 1.05; letter-spacing: -0.03em;
+      max-width: 700px; margin-bottom: 28px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-headline em { font-style: italic; color: var(--gold); }
+
+    .hero-sub {
+      font-size: 1.1rem; font-weight: 300;
+      color: var(--text-mid); line-height: 1.75;
+      max-width: 560px; margin-bottom: 40px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-tag {
+      background: var(--white);
+      border: 1px solid var(--grey-mid);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 0.8rem; font-weight: 500;
+      color: var(--green);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .hero-tag:hover { border-color: var(--gold); background: var(--gold-light); }
+
+    /* ── ORGANIC DIVIDER ─────────────────────────────── */
+    .divider {
+      width: 100%; overflow: hidden;
+      line-height: 0; margin: -1px 0;
+    }
+    .divider svg { display: block; width: 100%; }
+
+    /* ── SERVICES ────────────────────────────────────── */
+    .services-section {
+      padding: 100px 5%;
+      background: var(--white);
+      position: relative;
+    }
+
+    /* Grain texture overlay */
+    .services-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; opacity: 0.4;
+    }
+
+    .services-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+
+    .section-header { margin-bottom: 64px; }
+    .section-tag { font-size: 0.75rem; font-weight: 700; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 12px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 2.5vw, 2.6rem); font-weight: 900; color: var(--green); line-height: 1.2; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--grey-mid);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .service-item {
+      background: var(--cream);
+      padding: 40px 32px;
+      transition: background 0.3s;
+      position: relative;
+    }
+    .service-item:hover { background: var(--gold-light); }
+
+    .service-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 900;
+      color: rgba(91,107,79,0.12);
+      line-height: 1; margin-bottom: 16px;
+      letter-spacing: -0.05em;
+    }
+
+    .service-icon {
+      width: 48px; height: 48px;
+      background: var(--green-light);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green); margin-bottom: 18px;
+      transition: background 0.3s;
+    }
+    .service-item:hover .service-icon { background: var(--gold); color: var(--white); }
+
+    .service-name { font-weight: 700; font-size: 1rem; color: var(--green); margin-bottom: 10px; }
+    .service-desc { font-size: 0.875rem; color: var(--text-mid); line-height: 1.65; font-weight: 300; }
+
+    /* ── PACKAGES ────────────────────────────────────── */
+    .packages-section {
+      padding: 100px 5%;
+      background: var(--green);
+      position: relative; overflow: hidden;
+    }
+
+    .packages-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 10% 90%, rgba(187,155,110,0.12) 0%, transparent 50%),
+        radial-gradient(circle at 90% 10%, rgba(255,255,255,0.04) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .packages-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+
+    .packages-header { margin-bottom: 60px; }
+    .packages-header .section-tag { color: var(--gold); }
+    .packages-header .section-title { color: var(--white); }
+    .packages-sub { font-size: 1rem; color: rgba(255,255,255,0.7); margin-top: 12px; max-width: 480px; line-height: 1.6; }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .package-card {
+      border-radius: 24px;
+      padding: 40px 32px;
+      position: relative;
+      transition: transform 0.25s;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .package-card:hover { transform: translateY(-6px); }
+
+    .package-card.featured {
+      background: var(--white);
+      border-color: transparent;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.2);
+    }
+
+    .featured-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--green-dark);
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 6px 16px; border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .package-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .package-card.featured .package-name { color: var(--green); }
+
+    .package-tagline {
+      font-size: 0.85rem; font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 28px; line-height: 1.5;
+    }
+    .package-card.featured .package-tagline { color: var(--text-mid); }
+
+    .package-divider {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.15);
+      margin-bottom: 28px;
+    }
+    .package-card.featured .package-divider { background: var(--grey-mid); }
+
+    .package-features { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+
+    .package-feature {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.875rem; color: rgba(255,255,255,0.8);
+      font-weight: 400; line-height: 1.5;
+    }
+    .package-card.featured .package-feature { color: var(--text-mid); }
+
+    .feature-check {
+      width: 18px; height: 18px; flex-shrink: 0;
+      background: rgba(187,155,110,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); margin-top: 1px;
+    }
+    .package-card.featured .feature-check { background: var(--green-light); color: var(--green); }
+
+    .package-btn {
+      display: block; text-align: center;
+      padding: 14px 24px; border-radius: 10px;
+      font-weight: 600; font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .package-btn:hover { background: rgba(255,255,255,0.18); transform: translateY(-1px); }
+    .package-card.featured .package-btn {
+      background: var(--gold); color: var(--green-dark);
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(187,155,110,0.4);
+    }
+    .package-card.featured .package-btn:hover { background: var(--gold-dark); }
+
+    /* ── CUSTOM ──────────────────────────────────────── */
+    .custom-section {
+      padding: 80px 5%;
+      background: var(--gold-light);
+    }
+    .custom-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 32px;
+    }
+    .custom-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700;
+      color: var(--green); margin-bottom: 10px;
+    }
+    .custom-text p { font-size: 1rem; color: var(--text-mid); font-weight: 300; line-height: 1.6; max-width: 480px; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--green); color: var(--white);
+      font-weight: 700; font-size: 0.95rem;
+      padding: 16px 32px; border-radius: 10px;
+      text-decoration: none; white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(91,107,79,0.3);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .btn-primary svg { transition: transform 0.2s; }
+    .btn-primary:hover svg { transform: translateX(3px); }
+
+    /* ── CTA ─────────────────────────────────────────── */
+    .cta-section { padding: 100px 5%; background: var(--white); text-align: center; }
+    .cta-inner { max-width: 600px; margin: 0 auto; }
+    .cta-sub { font-size: 1rem; color: #888; line-height: 1.65; margin: 16px 0 40px; }
+
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: var(--green-dark);
+      font-weight: 700; font-size: 0.95rem;
+      padding: 16px 32px; border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(187,155,110,0.35);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-gold:hover { background: var(--gold-dark); transform: translateY(-2px); }
+    .btn-gold svg { transition: transform 0.2s; }
+    .btn-gold:hover svg { transform: translateX(3px); }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer { background: var(--green); color: rgba(255,255,255,0.7); padding: 40px 5%; text-align: center; font-size: 0.85rem; }
+    footer strong { color: var(--white); }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .packages-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .custom-inner { flex-direction: column; }
+    }
+    @media (max-width: 580px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .hero-tags { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo-area">
+      <img src="logo.png" alt="Clear Desk Solutions" />
+      <div>
+        <div class="brand-name">Clear Desk <span>Solutions</span></div>
+        <div class="nav-tagline">Virtual Assistance</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="cleardesksolutions.html" class="nav-active">Services</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">What I offer</span>
+      </div>
+      <h1 class="hero-headline">
+        Everything your business needs — <em>handled.</em>
+      </h1>
+      <p class="hero-sub">
+        From inbox zero to social media strategy, bookkeeping to customer support — I offer full-service virtual assistance across every corner of your business, delivered with a personal human touch.
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag">Admin & Scheduling</span>
+        <span class="hero-tag">Email Management</span>
+        <span class="hero-tag">Bookkeeping</span>
+        <span class="hero-tag">Social Media</span>
+        <span class="hero-tag">Content Creation</span>
+        <span class="hero-tag">Customer Support</span>
+        <span class="hero-tag">Research & Data Entry</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section class="services-section" id="services">
+    <div class="services-inner">
+      <div class="section-header">
+        <span class="section-tag">The full picture</span>
+        <h2 class="section-title">Seven ways I support your business</h2>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-item">
+          <div class="service-number">01</div>
+          <div class="service-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div class="service-name">Admin & Scheduling</div>
+          <div class="service-desc">Calendar management, appointment setting, meeting prep, and day-to-day administrative tasks handled with precision so nothing falls through the cracks.</div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-number">02</div>
+          <div class="service-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="service-name">Email Management</div>
+          <div class="service-desc">Inbox triage, priority flagging, template responses, and folder organization — so you never drown in email again.</div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-number">03</div>
+          <div class="service-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <div class="service-name">Bookkeeping & Finance</div>
+          <div class="service-desc">Expense tracking, invoicing, reconciliation, and financial reporting to keep your books clean and stress-free all year round.</div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-number">04</div>
+          <div class="service-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div class="service-name">Customer Support</div>
+          <div class="service-desc">Professional client communication, inquiry handling, and follow-ups — keeping your customers happy, heard, and coming back.</div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-number">05</div>
+          <div class="service-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></div>
+          <div class="service-name">Social Media Management</div>
+          <div class="service-desc">Scheduling, posting, engagement, and growth strategy across your platforms — consistent, on-brand, and always active.</div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-number">06</div>
+          <div class="service-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+          <div class="service-name">Content Creation</div>
+          <div class="service-desc">Blog posts, newsletters, captions, and copy — compelling content that reflects your brand voice and speaks directly to your audience.</div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-number">07</div>
+          <div class="service-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="service-name">Research & Data Entry</div>
+          <div class="service-desc">Thorough research, accurate data entry, and organized reporting — giving you the information you need, when you need it.</div>
+        </div>
+
+        <!-- Empty cell to balance grid -->
+        <div class="service-item" style="background: var(--green-light); display:flex; align-items:center; justify-content:center; text-align:center; padding: 40px 32px;">
+          <div>
+            <div style="font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--green); margin-bottom:8px;">Need something else?</div>
+            <div style="font-size:0.85rem; color:var(--text-mid); font-weight:300; line-height:1.6;">I offer custom solutions tailored to your unique business needs.</div>
+          </div>
+        </div>
+
+        <!-- Decorative cell -->
+        <div class="service-item" style="background: var(--gold); display:flex; align-items:center; justify-content:center;">
+          <div style="font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:900; color:var(--white); text-align:center; font-style:italic; line-height:1.3;">"Your business, fully supported."</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="packages-section" id="packages">
+    <div class="packages-inner">
+      <div class="packages-header">
+        <span class="section-tag">Choose your plan</span>
+        <h2 class="section-title">Monthly retainer packages</h2>
+        <p class="packages-sub">Simple, transparent packages designed to grow with your business. No hidden fees, no surprises.</p>
+      </div>
+
+      <div class="packages-grid">
+
+        <!-- ESSENTIALS -->
+        <div class="package-card">
+          <div class="package-name">Essentials</div>
+          <div class="package-tagline">Perfect for business owners who need light, reliable support to stay on top of the basics.</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Up to 10 hours/month</li>
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Admin & scheduling support</li>
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Email management</li>
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Research & data entry</li>
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>1 business day response time</li>
+          </ul>
+          <a href="contact.html" class="package-btn">Get Started</a>
+        </div>
+
+        <!-- PROFESSIONAL (FEATURED) -->
+        <div class="package-card featured">
+          <div class="featured-badge">Most Popular</div>
+          <div class="package-name">Professional</div>
+          <div class="package-tagline">For growing businesses that need consistent, multi-area support every month.</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Up to 25 hours/month</li>
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Everything in Essentials</li>
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Social media management</li>
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Content creation</li>
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Customer support</li>
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Monthly check-in call</li>
+          </ul>
+          <a href="contact.html" class="package-btn">Get Started</a>
+        </div>
+
+        <!-- EXECUTIVE -->
+        <div class="package-card">
+          <div class="package-name">Executive</div>
+          <div class="package-tagline">For busy entrepreneurs who need comprehensive, hands-on support across every area.</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Up to 40 hours/month</li>
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Everything in Professional</li>
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Bookkeeping & finance</li>
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Priority response time</li>
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Bi-weekly check-in calls</li>
+            <li class="package-feature"><div class="feature-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Custom workflow setup</li>
+          </ul>
+          <a href="contact.html" class="package-btn">Get Started</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOM SOLUTION -->
+  <section class="custom-section">
+    <div class="custom-inner">
+      <div class="custom-text">
+        <h3>Not sure which package fits?</h3>
+        <p>Every business is different. If none of these packages feel quite right, I'd love to build something custom around your specific needs and budget. Let's talk it through.</p>
+      </div>
+      <a href="contact.html" class="btn-primary">
+        Let's build your custom plan
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <span class="section-tag">Ready to get started?</span>
+      <h2 class="section-title" style="font-family:'Playfair Display',serif; font-size:clamp(1.8rem,2.5vw,2.6rem); font-weight:900; color:var(--green); line-height:1.2;">Let's clear your desk — together.</h2>
+      <p class="cta-sub">Book a free 30-minute discovery call and find out which package is the perfect fit for your business.</p>
+      <a href="contact.html" class="btn-gold">
+        Book a free consultation
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>Clear Desk Solutions</strong> &nbsp;·&nbsp; Virtual Assistance for Busy Professionals &nbsp;·&nbsp; <a href="mailto:hello@cleardesksolutions.com">hello@cleardesksolutions.com</a></p>
+    <p style="margin-top:10px; font-size:0.78rem">© 2026 Clear Desk Solutions. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      const open = navLinks.style.display === 'flex';
+      navLinks.style.display = open ? 'none' : 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '72px';
+      navLinks.style.left = '0'; navLinks.style.right = '0';
+      navLinks.style.background = '#F7F4EF';
+      navLinks.style.padding = '20px 5%';
+      navLinks.style.borderBottom = '1px solid #D8D4CE';
+      navLinks.style.gap = '20px';
+      if (open) navLinks.style.display = 'none';
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.service-item, .package-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

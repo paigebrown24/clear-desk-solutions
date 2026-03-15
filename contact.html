@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Clear Desk Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #5B6B4F;
+      --green-dark:  #4A5840;
+      --green-light: #EBF0E6;
+      --gold:        #BB9B6E;
+      --gold-dark:   #A0845A;
+      --gold-light:  #F5EDE0;
+      --cream:       #F7F4EF;
+      --white:       #FFFFFF;
+      --charcoal:    #2C2C2C;
+      --text-mid:    #4A4A4A;
+      --grey-mid:    #D8D4CE;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 72px;
+      background: rgba(247,244,239,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--grey-mid);
+    }
+    .logo-area { display: flex; align-items: center; gap: 14px; }
+    .logo-area img { height: 44px; width: auto; }
+    .brand-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--green); letter-spacing: -0.01em; }
+    .brand-name span { color: var(--gold-dark); }
+    .nav-tagline { font-size: 0.65rem; color: #888; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 1px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.9rem; font-weight: 500; color: var(--text-mid); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-active { color: var(--green) !important; font-weight: 600 !important; position: relative; }
+    .nav-active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--gold); border-radius: 2px; }
+    .nav-cta { background: var(--gold) !important; color: var(--green-dark) !important; font-weight: 600 !important; padding: 9px 20px; border-radius: 8px; transition: background 0.2s, transform 0.15s !important; }
+    .nav-cta:hover { background: var(--gold-dark) !important; transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--green); border-radius: 2px; }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      background: var(--green);
+      padding: 140px 5% 100px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 80% 20%, rgba(187,155,110,0.15) 0%, transparent 45%),
+        radial-gradient(circle at 10% 80%, rgba(255,255,255,0.04) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .eyebrow-line { width: 40px; height: 2px; background: var(--gold); border-radius: 2px; }
+    .eyebrow-text { font-size: 0.78rem; font-weight: 700; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.1em; }
+
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+      font-weight: 900; color: var(--white);
+      line-height: 1.08; letter-spacing: -0.03em;
+      max-width: 700px; margin-bottom: 24px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero-headline em { font-style: italic; color: var(--gold); }
+
+    .hero-sub {
+      font-size: 1.1rem; font-weight: 300;
+      color: rgba(255,255,255,0.8); line-height: 1.75;
+      max-width: 520px;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    /* ── MAIN CONTENT ────────────────────────────────── */
+    .main {
+      padding: 100px 5%;
+      background: var(--cream);
+    }
+    .main-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.4fr 1fr;
+      gap: 80px; align-items: start;
+    }
+
+    /* ── FORM ────────────────────────────────────────── */
+    .form-wrap {
+      background: var(--white);
+      border-radius: 24px; padding: 48px;
+      border: 1px solid var(--grey-mid);
+      box-shadow: 0 8px 40px rgba(91,107,79,0.06);
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700;
+      color: var(--green); margin-bottom: 8px;
+    }
+    .form-sub { font-size: 0.9rem; color: #888; font-weight: 300; line-height: 1.6; margin-bottom: 36px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .field label { font-size: 0.8rem; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    .field input,
+    .field select,
+    .field textarea {
+      padding: 14px 16px;
+      border: 1.5px solid var(--grey-mid);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; color: var(--charcoal);
+      background: var(--cream);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(91,107,79,0.1);
+      background: var(--white);
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: #bbb; }
+
+    .field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%235B6B4F' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; cursor: pointer; }
+
+    .field textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+
+    .btn-submit {
+      width: 100%; padding: 18px;
+      background: var(--gold); color: var(--green-dark);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700; font-size: 1rem;
+      border: none; border-radius: 10px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 4px 20px rgba(187,155,110,0.35);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      margin-top: 8px;
+    }
+    .btn-submit:hover { background: var(--gold-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(187,155,110,0.45); }
+    .btn-submit svg { transition: transform 0.2s; }
+    .btn-submit:hover svg { transform: translateX(3px); }
+
+    /* Success message */
+    .success-msg {
+      display: none;
+      background: var(--green-light);
+      border: 1px solid var(--green);
+      border-radius: 12px; padding: 20px 24px;
+      margin-top: 20px;
+      color: var(--green); font-weight: 500;
+      font-size: 0.9rem; line-height: 1.6;
+      align-items: center; gap: 12px;
+    }
+    .success-msg.show { display: flex; }
+    .success-msg svg { flex-shrink: 0; }
+
+    /* ── SIDEBAR ─────────────────────────────────────── */
+    .sidebar { display: flex; flex-direction: column; gap: 28px; }
+
+    .sidebar-card {
+      background: var(--white);
+      border-radius: 20px; padding: 32px;
+      border: 1px solid var(--grey-mid);
+    }
+
+    .sidebar-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--green); margin-bottom: 8px;
+    }
+    .sidebar-card-sub { font-size: 0.85rem; color: #888; font-weight: 300; line-height: 1.6; margin-bottom: 20px; }
+
+    /* QR Code */
+    .qr-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+    .qr-frame {
+      width: 160px; height: 160px;
+      border-radius: 16px; overflow: hidden;
+      border: 3px solid var(--green-light);
+      padding: 8px; background: var(--white);
+    }
+    .qr-frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .qr-label { font-size: 0.78rem; color: #888; text-align: center; font-weight: 500; line-height: 1.5; }
+
+    /* What to expect */
+    .expect-list { display: flex; flex-direction: column; gap: 14px; }
+    .expect-item { display: flex; gap: 12px; align-items: flex-start; }
+    .expect-num {
+      width: 24px; height: 24px; flex-shrink: 0;
+      background: var(--green); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 700; color: var(--white);
+    }
+    .expect-text { font-size: 0.85rem; color: var(--text-mid); line-height: 1.55; font-weight: 300; }
+    .expect-text strong { font-weight: 600; color: var(--green); }
+
+    /* Availability badge */
+    .availability {
+      background: var(--green);
+      border-radius: 20px; padding: 28px 32px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .avail-dot {
+      width: 12px; height: 12px; flex-shrink: 0;
+      border-radius: 50%; background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(187,155,110,0.25);
+      animation: pulse 2s infinite;
+    }
+    .avail-text { font-size: 0.9rem; color: var(--white); font-weight: 500; line-height: 1.5; }
+    .avail-text strong { display: block; font-size: 1rem; margin-bottom: 2px; }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 4px rgba(187,155,110,0.25); }
+      50% { box-shadow: 0 0 0 8px rgba(187,155,110,0.1); }
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer { background: var(--green); color: rgba(255,255,255,0.7); padding: 40px 5%; text-align: center; font-size: 0.85rem; }
+    footer strong { color: var(--white); }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      .main-inner { grid-template-columns: 1fr; }
+      .sidebar { order: -1; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .form-wrap { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo-area">
+      <img src="logo.png" alt="Clear Desk Solutions" />
+      <div>
+        <div class="brand-name">Clear Desk <span>Solutions</span></div>
+        <div class="nav-tagline">Virtual Assistance</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="cleardesksolutions.html">Services</a></li>
+      <li><a href="contact.html" class="nav-active nav-cta">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Let's work together</span>
+      </div>
+      <h1 class="hero-headline">
+        Ready to clear your desk — <em>for good?</em>
+      </h1>
+      <p class="hero-sub">
+        Book your free 30-minute discovery call and let's talk about how Clear Desk Solutions can take the load off your plate — starting today.
+      </p>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <section class="main">
+    <div class="main-inner">
+
+      <!-- FORM -->
+      <div class="form-wrap">
+        <div class="form-title">Tell me about your business</div>
+        <p class="form-sub">Fill out the form below and I'll be in touch within one business day to schedule your free consultation.</p>
+
+        <div class="form-row">
+          <div class="field">
+            <label>First & Last Name</label>
+            <input type="text" placeholder="Jane Smith" id="name" />
+          </div>
+          <div class="field">
+            <label>Business Name</label>
+            <input type="text" placeholder="Your Business LLC" id="business" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label>Email Address</label>
+            <input type="email" placeholder="jane@yourbusiness.com" id="email" />
+          </div>
+          <div class="field">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="(555) 000-0000" id="phone" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Service I'm Interested In</label>
+          <select id="service">
+            <option value="" disabled selected>Select a service...</option>
+            <option>Admin & Scheduling</option>
+            <option>Email Management</option>
+            <option>Bookkeeping & Finance</option>
+            <option>Customer Support</option>
+            <option>Social Media Management</option>
+            <option>Content Creation</option>
+            <option>Research & Data Entry</option>
+            <option>Full Service — Essentials Package</option>
+            <option>Full Service — Professional Package</option>
+            <option>Full Service — Executive Package</option>
+            <option>Not sure yet — let's talk!</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Message</label>
+          <textarea placeholder="Tell me a little about your business and what you're looking for help with..." id="message"></textarea>
+        </div>
+
+        <button class="btn-submit" onclick="handleSubmit()">
+          Start working together
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <div class="success-msg" id="successMsg">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Thank you! I've received your message and will be in touch within one business day. I can't wait to work with you! 🌿</span>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+
+        <!-- QR Code -->
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Scan my digital business card</div>
+          <p class="sidebar-card-sub">All my contact details in one scan — save them straight to your phone.</p>
+          <div class="qr-wrap">
+            <div class="qr-frame">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3APaige%20Brown%0ATEL%3A6156096894%0AEMAIL%3Apaigebrown705%40gmail.com%0AEND%3AVCARD" alt="Clear Desk Solutions QR Code" />
+            </div>
+            <p class="qr-label">Point your camera at the QR code<br/>to access my full contact details</p>
+          </div>
+        </div>
+
+        <!-- What to expect -->
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">What happens next?</div>
+          <p class="sidebar-card-sub">Here's what to expect after you reach out.</p>
+          <div class="expect-list">
+            <div class="expect-item">
+              <div class="expect-num">1</div>
+              <div class="expect-text"><strong>I'll reach out within 1 business day</strong> to confirm your free discovery call.</div>
+            </div>
+            <div class="expect-item">
+              <div class="expect-num">2</div>
+              <div class="expect-text"><strong>We'll have a 30-minute call</strong> to talk through your business needs and goals.</div>
+            </div>
+            <div class="expect-item">
+              <div class="expect-num">3</div>
+              <div class="expect-text"><strong>I'll put together a custom plan</strong> tailored to your business and budget.</div>
+            </div>
+            <div class="expect-item">
+              <div class="expect-num">4</div>
+              <div class="expect-text"><strong>We get started!</strong> Your desk starts clearing from day one.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Availability -->
+        <div class="availability">
+          <div class="avail-dot"></div>
+          <div class="avail-text">
+            <strong>Available for new clients</strong>
+            Taking on new clients now — reach out today!
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>Clear Desk Solutions</strong> &nbsp;·&nbsp; Virtual Assistance for Busy Professionals &nbsp;·&nbsp; <a href="mailto:hello@cleardesksolutions.com">hello@cleardesksolutions.com</a></p>
+    <p style="margin-top:10px; font-size:0.78rem">© 2026 Clear Desk Solutions. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      const open = navLinks.style.display === 'flex';
+      navLinks.style.display = open ? 'none' : 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '72px';
+      navLinks.style.left = '0'; navLinks.style.right = '0';
+      navLinks.style.background = '#F7F4EF';
+      navLinks.style.padding = '20px 5%';
+      navLinks.style.borderBottom = '1px solid #D8D4CE';
+      navLinks.style.gap = '20px';
+      if (open) navLinks.style.display = 'none';
+    });
+
+    function handleSubmit() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const service = document.getElementById('service').value;
+
+      if (!name || !email || !service) {
+        alert('Please fill in your name, email, and the service you\'re interested in!');
+        return;
+      }
+
+      document.getElementById('successMsg').classList.add('show');
+      document.querySelector('.btn-submit').style.display = 'none';
+      document.querySelector('.btn-submit').previousElementSibling;
+      window.scrollTo({ top: document.getElementById('successMsg').offsetTop - 100, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
