@@ -433,18 +433,47 @@
     });
 
     function handleSubmit() {
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const service = document.getElementById('service').value;
+      // Clear previous errors
+      document.querySelectorAll('.field-error').forEach(e => e.remove());
+      document.querySelectorAll('.field input, .field textarea').forEach(f => f.style.borderColor = '');
 
-      if (!name || !email || !service) {
-        alert('Please fill in your name, email, and the service you\'re interested in!');
-        return;
+      const fields = [
+        { id: 'name', label: 'First & Last Name' },
+        { id: 'email', label: 'Email Address' },
+        { id: 'message', label: 'Message' }
+      ];
+
+      let hasErrors = false;
+
+      fields.forEach(field => {
+        const el = document.getElementById(field.id);
+        if (!el.value.trim()) {
+          hasErrors = true;
+          el.style.borderColor = '#c0392b';
+          const error = document.createElement('div');
+          error.className = 'field-error';
+          error.style.cssText = 'color:#c0392b; font-size:0.78rem; margin-top:6px; font-weight:500;';
+          error.textContent = field.label + ' is required.';
+          el.parentNode.appendChild(error);
+        }
+      });
+
+      // Email format check
+      const email = document.getElementById('email');
+      if (email.value && !/\S+@\S+\.\S+/.test(email.value)) {
+        hasErrors = true;
+        email.style.borderColor = '#c0392b';
+        const error = document.createElement('div');
+        error.className = 'field-error';
+        error.style.cssText = 'color:#c0392b; font-size:0.78rem; margin-top:6px; font-weight:500;';
+        error.textContent = 'Please enter a valid email address.';
+        email.parentNode.appendChild(error);
       }
+
+      if (hasErrors) return;
 
       document.getElementById('successMsg').classList.add('show');
       document.querySelector('.btn-submit').style.display = 'none';
-      document.querySelector('.btn-submit').previousElementSibling;
       window.scrollTo({ top: document.getElementById('successMsg').offsetTop - 100, behavior: 'smooth' });
     }
   </script>
