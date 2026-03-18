@@ -474,6 +474,12 @@
 
       document.getElementById('successMsg').classList.add('show');
       document.querySelector('.btn-submit').style.display = 'none';
+      document.getElementById('name').value = '';
+      document.getElementById('business').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('service').value = '';
+      document.getElementById('message').value = '';
       window.scrollTo({ top: document.getElementById('successMsg').offsetTop - 100, behavior: 'smooth' });
     }
   </script>
