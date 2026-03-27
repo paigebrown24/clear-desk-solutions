@@ -46,9 +46,7 @@
     .brand-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--green); letter-spacing: -0.01em; }
     .brand-name span { color: var(--gold-dark); }
     .nav-tagline { font-size: 0.65rem; color: #888; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 1px; }
-    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-    .nav-links a { text-decoration: none; font-size: 0.9rem; font-weight: 500; color: var(--text-mid); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--green); }
+  
     .nav-active { color: var(--green) !important; font-weight: 600 !important; position: relative; }
     .nav-active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--gold); border-radius: 2px; }
     .nav-cta { background: var(--gold) !important; color: var(--green-dark) !important; font-weight: 600 !important; padding: 9px 20px; border-radius: 8px; transition: background 0.2s, transform 0.15s !important; }
@@ -401,7 +399,7 @@
     @media (max-width: 900px) {
       .services-grid { grid-template-columns: 1fr 1fr; }
       .why-inner { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
+      
       .hamburger { display: flex; }
       .hero-trust { gap: 20px; }
       .intro-strip-inner { flex-direction: column; gap: 16px; }
@@ -430,17 +428,14 @@
         <div class="nav-tagline">Virtual Assistance</div>
       </div>
     </div>
-    <ul class="nav-links">
-      <li><a href="index.html" class="nav-active">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="cleardesksolutions.html">Services</a></li>
+    <
       <ul class="nav-links">
   <li><a href="index.html" class="nav-active">Home</a></li>
   <li><a href="about.html">About</a></li>
   <li><a href="cleardesksolutions.html">Services</a></li>
   <li><a href="portfolio.html">Portfolio</a></li>
   <li><a href="contact.html" class="nav-cta">Contact</a></li>
-</ul> class="nav-cta">Contact</a></li>
+</ul> 
     </ul>
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
@@ -618,18 +613,10 @@
 
   <script>
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.querySelector('.nav-links');
+  \
     hamburger.addEventListener('click', () => {
       const open = navLinks.style.display === 'flex';
-      navLinks.style.display = open ? 'none' : 'flex';
-      navLinks.style.flexDirection = 'column';
-      navLinks.style.position = 'absolute';
-      navLinks.style.top = '72px';
-      navLinks.style.left = '0'; navLinks.style.right = '0';
-      navLinks.style.background = '#F7F4EF';
-      navLinks.style.padding = '20px 5%';
-      navLinks.style.borderBottom = '1px solid #D8D4CE';
-      navLinks.style.gap = '20px';
+      
       if (open) navLinks.style.display = 'none';
     });
 
