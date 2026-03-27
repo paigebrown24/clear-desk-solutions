@@ -182,6 +182,22 @@
     .story-content p { font-size: 1.05rem; font-weight: 300; color: var(--text-mid); line-height: 1.85; margin-bottom: 24px; }
     .story-content p:last-child { margin-bottom: 0; }
     .story-content strong { font-weight: 600; color: var(--green); }
+    /* ── EXPERIENCE ──────────────────────────────────── */
+.experience { padding: 100px 5%; background: var(--cream); }
+.experience-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 2fr;
+  gap: 80px; align-items: start;
+}
+.experience-label { position: sticky; top: 100px; }
+.experience-content p { font-size: 1.05rem; font-weight: 300; color: var(--text-mid); line-height: 1.85; margin-bottom: 24px; }
+.experience-content p:last-child { margin-bottom: 0; }
+.experience-content strong { font-weight: 600; color: var(--green); }
+
+@media (max-width: 900px) {
+  .experience-inner { grid-template-columns: 1fr; gap: 32px; }
+  .experience-label { position: static; }
+}
 
     /* ── VALUES ──────────────────────────────────────── */
     .values { padding: 100px 5%; background: var(--cream); }
@@ -289,8 +305,9 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html" class="nav-active">About</a></li>
       <li><a href="cleardesksolutions.html">Services</a></li>
-      <li><a href="contact.html" class="nav-cta">Contact</a></li>
-    </ul>
+      <li><a href="portfolio.html">Portfolio</a></li>
+       class="nav-cta">Contact</a></li>
+    </ul><li><a href="contact.html"
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
@@ -346,6 +363,21 @@
   </section>
 
   <!-- VALUES -->
+   <!-- REAL EXPERIENCE -->
+  <section class="experience">
+    <div class="experience-inner">
+      <div class="experience-label">
+        <span class="section-tag">Current Work</span>
+        <h2 class="section-title">Real Experience, Real Results</h2>
+        <div class="story-divider"></div>
+      </div>
+      <div class="experience-content">
+        <p>In addition to running Clear Desk Solutions, I work with Power Media Solutions — a professional PR and marketing firm — managing social media for multiple clients including nonprofits and local businesses. I build content calendars, create graphics in Canva, edit Reels in CapCut, and schedule strategic content across Facebook and Instagram using Meta Business Suite.</p>
+        <p>From member spotlights to event promotion to branded press graphics, I bring hands-on, proven experience to every Clear Desk Solutions client. My work has been featured as client cover photos, shared in executive personal content, and consistently hits engagement goals on Meta. I don't just know how to manage social media — I'm actively doing it, right now, for multiple clients.</p>
+        <p>When you work with Clear Desk Solutions, you're working with someone who shows up every day in the real trenches of content creation and social media management — not just someone who says they can do it.</p>
+      </div>
+    </div>
+  </section>
   <section class="values">
     <div class="values-inner">
       <div class="values-header">

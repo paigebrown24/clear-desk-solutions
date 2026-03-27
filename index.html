@@ -286,8 +286,81 @@
     .callout-author { font-size: 0.85rem; opacity: 0.65; font-weight: 500; }
     .callout-services { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
     .callout-pill { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); font-size: 0.75rem; font-weight: 500; padding: 6px 14px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.15); }
-
+/* ── TESTIMONIAL ─────────────────────────────────── */
+.testimonial-section {
+  padding: 100px 5%;
+  background: var(--green);
+  position: relative; overflow: hidden;
+}
+.testimonial-section::before {
+  content: '"'; position: absolute; top: -30px; left: 5%;
+  font-family: 'Playfair Display', serif;
+  font-size: 16rem; font-weight: 900;
+  color: rgba(255,255,255,0.05); line-height: 1; pointer-events: none;
+}
+.testimonial-inner {
+  max-width: 900px; margin: 0 auto;
+  text-align: center; position: relative;
+}
+.testimonial-tag {
+  display: inline-block;
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--gold); text-transform: uppercase;
+  letter-spacing: 0.1em; margin-bottom: 32px;
+}
+.testimonial-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 700; font-style: italic;
+  color: var(--white); line-height: 1.5;
+  margin-bottom: 28px;
+}
+.testimonial-author {
+  font-size: 1rem; font-weight: 600;
+  color: var(--gold); margin-bottom: 8px;
+}
+.testimonial-context {
+  font-size: 0.9rem; color: rgba(255,255,255,0.7);
+  font-weight: 400;
+}
     /* ── CTA ─────────────────────────────────────────── */
+    /* ── TESTIMONIAL ─────────────────────────────────── */
+.testimonial-section {
+  padding: 100px 5%;
+  background: var(--green);
+  position: relative; overflow: hidden;
+}
+.testimonial-section::before {
+  content: '"'; position: absolute; top: -30px; left: 5%;
+  font-family: 'Playfair Display', serif;
+  font-size: 16rem; font-weight: 900;
+  color: rgba(255,255,255,0.05); line-height: 1; pointer-events: none;
+}
+.testimonial-inner {
+  max-width: 900px; margin: 0 auto;
+  text-align: center; position: relative;
+}
+.testimonial-tag {
+  display: inline-block;
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--gold); text-transform: uppercase;
+  letter-spacing: 0.1em; margin-bottom: 32px;
+}
+.testimonial-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 700; font-style: italic;
+  color: var(--white); line-height: 1.5;
+  margin-bottom: 28px;
+}
+.testimonial-author {
+  font-size: 1rem; font-weight: 600;
+  color: var(--gold); margin-bottom: 8px;
+}
+.testimonial-context {
+  font-size: 0.9rem; color: rgba(255,255,255,0.7);
+  font-weight: 400;
+}
     .cta-section {
       padding: 120px 5%;
       background: var(--gold-light);
@@ -361,7 +434,13 @@
       <li><a href="index.html" class="nav-active">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="cleardesksolutions.html">Services</a></li>
-      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+      <ul class="nav-links">
+  <li><a href="index.html" class="nav-active">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="cleardesksolutions.html">Services</a></li>
+  <li><a href="portfolio.html">Portfolio</a></li>
+  <li><a href="contact.html" class="nav-cta">Contact</a></li>
+</ul> class="nav-cta">Contact</a></li>
     </ul>
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
@@ -507,7 +586,17 @@
       </div>
     </div>
   </section>
-
+<!-- TESTIMONIAL -->
+  <section class="testimonial-section">
+    <div class="testimonial-inner">
+      <div class="testimonial-tag">Client Feedback</div>
+      <div class="testimonial-quote">
+        "Publicly recognized by Sharen Rooks on her personal Facebook page — tagged by name for the quality and professionalism of my work."
+      </div>
+      <div class="testimonial-author">— Sharen Rooks, CEO, Power Media Solutions</div>
+      <div class="testimonial-context">Managing social media for multiple clients across Facebook and Instagram</div>
+    </div>
+  </section>
   <!-- CTA -->
   <section class="cta-section">
     <div class="cta-inner">
