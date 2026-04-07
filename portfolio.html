@@ -40,7 +40,11 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--grey-mid);
     }
-
+    a.logo-area {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
     .logo-area { display: flex; align-items: center; gap: 14px; }
     
     /* SVG Logo Icon Styling */
@@ -117,7 +121,7 @@
       padding: 32px; background: var(--cream);
       border-radius: 16px; border: 1px solid var(--grey-mid);
     }
-    .meta-item { }
+  
     .meta-label { font-size: 0.75rem; font-weight: 700; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
     .meta-value { font-size: 0.95rem; color: var(--charcoal); font-weight: 500; line-height: 1.6; }
 
@@ -214,16 +218,16 @@
 
   <!-- NAV -->
   <nav>
-    <div class="logo-area">
+    <a href="index.html" class="logo-area">
       <!-- SVG Checkmark Icon -->
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-icon">
         <circle cx="24" cy="24" r="22" fill="#5B6B4F" opacity="0.12"/>
         <path d="M14 24L20.5 30.5L34 17" stroke="#5B6B4F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <div>
+      </a>
         <div class="brand-name">Clear Desk <span>Solutions</span></div>
         <div class="nav-tagline">Virtual Assistance</div>
-      </div>
+      </a>
     </div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
