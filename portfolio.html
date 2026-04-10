@@ -33,21 +33,27 @@
 
     /* ── NAV ─────────────────────────────────────────── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%; height: 72px;
-      background: rgba(247,244,239,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--grey-mid);
-    }
-
-    a.logo-area {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: nowrap;
+  padding: 0 5%; height: 72px;
+  background: rgba(247,244,239,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--grey-mid);
 }
 
-    .logo-area { display: flex; align-items: center; gap: 14px; }
+   .logo-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
     
     /* SVG Logo Icon Styling */
     .logo-icon {
@@ -61,7 +67,8 @@
     .brand-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--green); letter-spacing: -0.01em; }
     .brand-name span { color: var(--gold-dark); }
     .nav-tagline { font-size: 0.65rem; color: #888; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 1px; }
-    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .brand-name { font-size: 1rem; }
+    .nav-links { display: flex; align-items: center; gap: 20px; list-style: none; }
     .nav-links a { text-decoration: none; font-size: 0.9rem; font-weight: 500; color: var(--text-mid); transition: color 0.2s; }
     .nav-links a:hover { color: var(--green); }
     .nav-active { color: var(--green) !important; font-weight: 600 !important; position: relative; }
@@ -219,17 +226,17 @@
 <body>
 
   <!-- NAV -->
-  <nav>
-    <a href="index.html" class="logo-area">
-      <!-- SVG Checkmark Icon -->
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-icon">
-        <circle cx="24" cy="24" r="22" fill="#5B6B4F" opacity="0.12"/>
-        <path d="M14 24L20.5 30.5L34 17" stroke="#5B6B4F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-        <div class="brand-name">Clear Desk <span>Solutions</span></div>
-        <div class="nav-tagline">Virtual Assistance</div>
-      </a>
+   <nav>
+ <a href="index.html" class="logo-area">
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-icon">
+    <circle cx="24" cy="24" r="22" fill="#5B6B4F" opacity="0.12"/>
+    <path d="M14 24L20.5 30.5L34 17" stroke="#5B6B4F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <div class="logo-text">
+    <div class="brand-name">Clear Desk <span>Solutions</span></div>
+    <div class="nav-tagline">Virtual Assistance</div>
+  </div>
+</a>
   
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>

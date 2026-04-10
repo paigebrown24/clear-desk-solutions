@@ -35,7 +35,18 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--grey-mid);
     }
-    .logo-area { display: flex; align-items: center; gap: 14px; }
+  .logo-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 /* SVG Logo Icon Styling */
    .logo-icon {
      flex-shrink: 0;
@@ -295,17 +306,16 @@
 
   <!-- NAV -->
   <nav>
-    <a href="index.html" class="logo-area">
-      <!-- NEW SVG Checkmark Icon - Sage Green with organic rounded style -->
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-icon">
-  <!-- Organic rounded background circle -->
-  <circle cx="24" cy="24" r="22" fill="#5B6B4F" opacity="0.12"/>
-  <!-- Main checkmark path with rounded edges -->
-  <path d="M14 24L20.5 30.5L34 17" stroke="#5B6B4F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>    
-        <div class="brand-name">Clear Desk <span>Solutions</span></div>
-        <div class="nav-tagline">Virtual Assistance</div>
-      </div> </a>
+  <a href="index.html" class="logo-area">
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-icon">
+    <circle cx="24" cy="24" r="22" fill="#5B6B4F" opacity="0.12"/>
+    <path d="M14 24L20.5 30.5L34 17" stroke="#5B6B4F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <div class="logo-text">
+    <div class="brand-name">Clear Desk <span>Solutions</span></div>
+    <div class="nav-tagline">Virtual Assistance</div>
+  </div>
+</a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>

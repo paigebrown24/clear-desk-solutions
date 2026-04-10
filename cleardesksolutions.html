@@ -41,14 +41,19 @@
       border-bottom: 1px solid var(--grey-mid);
     }
 
-    .logo-area { display: flex; align-items: center; gap: 14px; }
     .logo-area img { height: 44px; width: auto; }
-    a.logo-area {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
+   .logo-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
 }
-    .brand-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--green); letter-spacing: -0.01em; }
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
     .brand-name span { color: var(--gold-dark); }
     .nav-tagline { font-size: 0.65rem; color: #888; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 1px; }
     .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
@@ -390,7 +395,8 @@
       <div> 
         <div class="brand-name">Clear Desk <span>Solutions</span></div>
         <div class="nav-tagline">Virtual Assistance</div>
-      </div> </a>
+      </div> 
+      </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
