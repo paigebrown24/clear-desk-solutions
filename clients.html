@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Client List — Clear Desk Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green: #5B6B4F;
+      --gold: #BB9B6E;
+      --cream: #F7F4EF;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: #333; margin: 0; padding: 40px 5%; }
+    h1 { font-family: 'Playfair Display', serif; color: var(--green); margin-bottom: 8px; }
+    p { color: #666; margin-bottom: 32px; }
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    th { background: var(--green); color: white; padding: 14px 16px; text-align: left; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    td { padding: 12px 16px; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f9f7f4; }
+    .loading { color: #999; font-style: italic; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Client List</h1>
+  <p>Connected to Supabase — Clear Desk Solutions</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Notes</th>
+        <th>Last Contact</th>
+      </tr>
+    </thead>
+    <tbody id="client-list">
+      <tr><td colspan="4" class="loading">Loading clients...</td></tr>
+    </tbody>
+  </table>
+
+  <script>
+    const SUPABASE_URL = 'https://kjfaunfetryaqsgchkrx.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_MasNybjIP3sb6QVccE2OWA_ij_WEDT9';
+
+    async function loadClients() {
+      try {
+       const res = await fetch(`${SUPABASE_URL}/rest/v1/clients?select=*`, {
+          headers: {
+            'apikey': SUPABASE_KEY,
+           const res = await fetch(`${SUPABASE_URL}/rest/v1/clients?select=*`, {
+        });
+        const data = await res.json();
+        const tbody = document.getElementById('client-list');
+        tbody.innerHTML = data.map(client => `
+          <tr>
+            <td>${client.email || '-'}</td>
+            <td>${client.phone || '-'}</td>
+            <td>${client.notes || '-'}</td>
+            <td>${client.last_contact || '-'}</td>
+          </tr>
+        `).join('');
+      } catch (err) {
+        document.getElementById('client-list').innerHTML = '<tr><td colspan="4" class="error">Error loading data.</td></tr>';
+      }
+    }
+
+    loadClients();
+  </script>
+</body>
+</html>
