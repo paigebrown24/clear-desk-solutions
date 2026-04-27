@@ -58,31 +58,12 @@
 
     async function loadClients() {
       try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/clients?select=*`, {
-  headers: {
-    'apikey': SUPABASE_KEY,
-    'Authorization': `Bearer ${SUPABASE_KEY}`
-  }
-});
-async function addClient() {
-  const email = document.getElementById('new-email').value;
-  const phone = document.getElementById('new-phone').value;
-  const notes = document.getElementById('new-notes').value;
-  const last_contact = document.getElementById('new-date').value;
-
-  await fetch(`${SUPABASE_URL}/rest/v1/clients`, {
-    method: 'POST',
-    headers: {
-      'apikey': SUPABASE_KEY,
-      'Authorization': `Bearer ${SUPABASE_KEY}`,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=minimal'
-    },
-    body: JSON.stringify({ email, phone, notes, last_contact })
-  });
-
-  loadClients();
-}
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/clients?select=*`, {
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`
+          }
+        });
         const data = await res.json();
         const tbody = document.getElementById('client-list');
         tbody.innerHTML = data.map(client => `
@@ -98,7 +79,27 @@ async function addClient() {
       }
     }
 
+    async function addClient() {
+      const email = document.getElementById('new-email').value;
+      const phone = document.getElementById('new-phone').value;
+      const notes = document.getElementById('new-notes').value;
+      const last_contact = document.getElementById('new-date').value;
+
+      await fetch(`${SUPABASE_URL}/rest/v1/clients`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ email, phone, notes, last_contact })
+      });
+
+      loadClients();
+    }
+
     loadClients();
-  </script>
+</script>
 </body>
 </html>
