@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Share Your Experience — Clear Desk Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #5B6B4F; --green-dark: #4A5840; --green-light: #EBF0E6;
+      --gold: #BB9B6E; --gold-dark: #A0845A;
+      --cream: #F7F4EF; --white: #FFFFFF;
+      --charcoal: #2C2C2C; --text-mid: #4A4A4A; --grey-mid: #D8D4CE;
+      --space-xs: 8px; --space-sm: 16px; --space-md: 24px;
+      --space-lg: 32px; --space-xl: 48px;
+      --radius-sm: 8px; --radius-md: 12px; --radius-xl: 24px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 72px;
+      background: rgba(247,244,239,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--grey-mid);
+    }
+    .logo-area { display: flex; align-items: center; gap: var(--space-xs); text-decoration: none; }
+    .logo-text { display: flex; flex-direction: column; }
+    .brand-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--green); }
+    .brand-name span { color: var(--gold-dark); }
+    .nav-tagline { font-size: 0.65rem; color: #888; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: var(--space-lg); list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.9rem; font-weight: 500; color: var(--text-mid); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta { background: var(--gold) !important; color: var(--green-dark) !important; font-weight: 600 !important; padding: 9px 20px; border-radius: var(--radius-sm); }
+
+    .hero {
+      background: var(--green); padding: 140px 5% 100px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 80% 20%, rgba(187,155,110,0.15) 0%, transparent 45%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 700px; margin: 0 auto; text-align: center; position: relative; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-md); }
+    .eyebrow-line { width: 40px; height: 2px; background: var(--gold); border-radius: 2px; }
+    .eyebrow-text { font-size: 0.78rem; font-weight: 700; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.1em; }
+    .hero-headline { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; color: white; line-height: 1.1; margin-bottom: var(--space-md); }
+    .hero-headline em { font-style: italic; color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.8); line-height: 1.75; font-weight: 300; }
+
+    .main { padding: 100px 5%; }
+    .main-inner { max-width: 680px; margin: 0 auto; }
+
+    .form-wrap {
+      background: var(--white); border-radius: var(--radius-xl);
+      padding: var(--space-xl); border: 1px solid var(--grey-mid);
+      box-shadow: 0 8px 40px rgba(91,107,79,0.06);
+    }
+    .form-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--green); margin-bottom: var(--space-xs); }
+    .form-sub { font-size: 0.9rem; color: #888; line-height: 1.6; margin-bottom: var(--space-lg); }
+
+    .field { display: flex; flex-direction: column; gap: var(--space-xs); margin-bottom: var(--space-md); }
+    .field label { font-size: 0.8rem; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: 0.06em; }
+    .field input, .field textarea {
+      padding: 14px var(--space-sm); border: 1.5px solid var(--grey-mid);
+      border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; color: var(--charcoal); background: var(--cream);
+      transition: border-color 0.2s, box-shadow 0.2s; outline: none; width: 100%;
+    }
+    .field input:focus, .field textarea:focus {
+      border-color: var(--green); box-shadow: 0 0 0 3px rgba(91,107,79,0.1); background: var(--white);
+    }
+    .field input::placeholder, .field textarea::placeholder { color: #bbb; }
+    .field textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+
+    /* Star Rating */
+    .stars { display: flex; gap: var(--space-xs); flex-direction: row-reverse; justify-content: flex-end; }
+    .stars input { display: none; }
+    .stars label { font-size: 2rem; color: #ddd; cursor: pointer; transition: color 0.2s; }
+    .stars input:checked ~ label,
+    .stars label:hover,
+    .stars label:hover ~ label { color: var(--gold); }
+
+    .btn-submit {
+      width: 100%; padding: 18px; background: var(--gold); color: var(--green-dark);
+      font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1rem;
+      border: none; border-radius: var(--radius-sm); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: var(--space-xs);
+      box-shadow: 0 4px 20px rgba(187,155,110,0.35);
+      transition: background 0.2s, transform 0.2s; margin-top: var(--space-xs);
+    }
+    .btn-submit:hover:not(:disabled) { background: var(--gold-dark); transform: translateY(-2px); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .success-msg {
+      display: none; background: var(--green-light); border: 1px solid var(--green);
+      border-radius: var(--radius-md); padding: var(--space-md); margin-top: var(--space-md);
+      color: var(--green); font-weight: 500; font-size: 0.9rem; line-height: 1.6;
+      align-items: center; gap: var(--space-sm);
+    }
+    .success-msg.show { display: flex; }
+
+    footer { background: var(--green); color: rgba(255,255,255,0.7); padding: var(--space-lg) 5%; text-align: center; font-size: 0.85rem; }
+    footer strong { color: white; }
+    footer a { color: var(--gold); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="logo-area">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="22" fill="#5B6B4F" opacity="0.12"/>
+        <path d="M14 24L20.5 30.5L34 17" stroke="#5B6B4F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="logo-text">
+        <div class="brand-name">Clear Desk <span>Solutions</span></div>
+        <div class="nav-tagline">Virtual Assistance</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="cleardesksolutions.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Client Testimonials</span>
+        <div class="eyebrow-line"></div>
+      </div>
+      <h1 class="hero-headline">Share your <em>experience</em></h1>
+      <p class="hero-sub">Working with you has been my pleasure — I'd love to hear how Clear Desk Solutions has made a difference for your business.</p>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="main">
+    <div class="main-inner">
+      <div class="form-wrap">
+        <div class="form-title">Leave a testimonial</div>
+        <p class="form-sub">Your feedback helps other small business owners find the support they need. Thank you for taking a moment to share!</p>
+
+        <form id="testimonialForm">
+          <div class="field">
+            <label>Your Name *</label>
+            <input type="text" id="t-name" placeholder="Jane Smith" required />
+          </div>
+          <div class="field">
+            <label>Business Name</label>
+            <input type="text" id="t-business" placeholder="Your Business LLC" />
+          </div>
+          <div class="field">
+            <label>Your Rating *</label>
+            <div class="stars">
+              <input type="radio" name="rating" id="s5" value="5"/><label for="s5">★</label>
+              <input type="radio" name="rating" id="s4" value="4"/><label for="s4">★</label>
+              <input type="radio" name="rating" id="s3" value="3"/><label for="s3">★</label>
+              <input type="radio" name="rating" id="s2" value="2"/><label for="s2">★</label>
+              <input type="radio" name="rating" id="s1" value="1"/><label for="s1">★</label>
+            </div>
+          </div>
+          <div class="field">
+            <label>Your Testimonial *</label>
+            <textarea id="t-message" placeholder="Working with Paige has been incredible..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">
+            Submit Testimonial
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+
+          <div class="success-msg" id="successMsg">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Thank you so much! Your testimonial has been submitted and will be reviewed shortly. I truly appreciate your support! 🌿</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>Clear Desk Solutions</strong> &nbsp;·&nbsp; Virtual Assistance for Busy Professionals &nbsp;·&nbsp; <a href="mailto:paigembrown@live.com">paigembrown@live.com</a></p>
+    <p style="margin-top:10px; font-size:0.78rem">© 2026 Clear Desk Solutions. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const SUPABASE_URL = 'https://kjfaunfetryaqsgchkrx.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_8ExBijP4uUcoT1dbyEqylA_IriKQhlt';
+
+    document.getElementById('testimonialForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      const rating = document.querySelector('input[name="rating"]:checked');
+
+      await fetch(`${SUPABASE_URL}/rest/v1/testimonials`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          name: document.getElementById('t-name').value,
+          business: document.getElementById('t-business').value,
+          rating: rating ? parseInt(rating.value) : 5,
+          message: document.getElementById('t-message').value,
+          approved: false
+        })
+      });
+
+      document.getElementById('successMsg').classList.add('show');
+      btn.style.display = 'none';
+      this.reset();
+    });
+  </script>
+</body>
+</html>
